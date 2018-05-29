@@ -119,7 +119,7 @@ def game_hash
 end
 
 def num_points_scored(player_name)
-  points_scored = nil
+  points_scored = 0
   game_hash.each do |team, data|
     game_hash[team][:players].each do |name, detail|
       if player_name == name
@@ -131,7 +131,7 @@ def num_points_scored(player_name)
 end
 
 def shoe_size(player_name)
-  shoe_size = nil
+  shoe_size = 0
   game_hash.each do |team, data|
     game_hash[team][:players].each do |name, detail|
       if player_name == name
@@ -178,7 +178,7 @@ def player_stats(player_name)
   player_stats_hash = {}
   game_hash.each do |team, data|
     game_hash[team][:players].each do |player, data|
-      if player_name == player
+      if player == player_name
         player_stats_hash = game_hash[team][:players][player]
       end
     end
@@ -188,22 +188,18 @@ end
 
 def big_shoe_rebounds
   biggest = 0
-  player_w_biggest_shoe = nil
-  player_rebounds = nil
-  game_hash.each do |team, attributes|
-    game_hash[team].each do |attribute, value|
-      if attribute == :players
-        game_hash[team][:players].each do |player, data|
-          game_hash[team][:players][player].each do |datum, val|
-            if datum == :shoe && val > biggest
-              biggest = val
-              player_w_biggest_shoe = player
-            end
-          end
-          if player == player_w_biggest_shoe
-            player_rebounds = game_hash[team][:players][player][:rebounds]
+  player_w_biggest_shoe = 0
+  player_rebounds = 0
+  game_hash.each do |team, val|
+    game_hash[team][:players].each do |player, data|
+        game_hash[team][:players][player].each do |datum, val|
+          if datum == :shoe && val > biggest
+            biggest = val
+            player_w_biggest_shoe = player
           end
         end
+        if player == player_w_biggest_shoe
+          player_rebounds = game_hash[team][:players][player][:rebounds]
       end
     end
   end
