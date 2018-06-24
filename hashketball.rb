@@ -93,6 +93,15 @@ def num_points_scored(player)
 	score
 end
 
+# their way
+# def num_points_scored(name)
+#   player = find_the_player(name)
+#   player.fetch(:points)
+# end
+
+
+
+
 def shoe_size(player)
 	shoe_size = nil
 	my_hash = game_hash
@@ -110,6 +119,11 @@ def shoe_size(player)
 	shoe_size
 end
 
+# def shoe_size(name)
+#   player = find_the_player(name)
+#   player.fetch(:shoe)
+# end
+
 def team_colors(team_name)
 	right_team = nil
 	game_hash.each do |home_or_away, data|
@@ -122,10 +136,19 @@ def team_colors(team_name)
 	return game_hash[right_team][:colors]
 end
 
+# def team_colors(team_name)
+#   team = find_the_team(team_name)
+#   team.fetch(:colors)
+# end
+
 def team_names
 	new_hash = game_hash
 	new_hash.map{|key, value| new_hash[key][:team_name]}
 end
+
+# def team_names
+#   teams.map{|t| t.fetch(:team_name)}
+# end
 
 
 def player_numbers(team_name)
@@ -149,6 +172,11 @@ def player_numbers(team_name)
 	my_array
 end
 
+# def player_numbers(team_name)
+#   find_the_team(team_name)[:players].map{ |player_name, stats| stats[:number] }
+# end
+
+
 def player_stats(player_name)
 	right_stats = nil
 	my_hash = game_hash
@@ -167,6 +195,10 @@ def player_stats(player_name)
 	end 
 	right_stats
 end
+
+# def player_stats(player_name)
+#   find_the_player(player_name)
+# end
 
 
 def big_shoe_rebounds
@@ -194,3 +226,33 @@ def big_shoe_rebounds
 	end
 	rebounds_stat
 end
+
+
+# def big_shoe_rebounds
+#   player_biggest_shoe_size.fetch(:rebounds)
+# end
+
+# helpers
+# def teams
+#   game_hash.values
+# end
+
+# def players
+#   game_hash[:home][:players].merge(game_hash[:away][:players])
+# # or concat
+# end
+
+# def find_the_team(team_name)
+#   teams.find {|team| team.fetch(:team_name) == team_name}
+# end
+
+# def find_the_player(name)
+#   players.fetch(name)
+# end
+
+# def player_biggest_shoe_size
+#   players.max_by{|player, stats| stats.fetch(:shoe)}[1]
+# end
+
+
+
